@@ -1,0 +1,75 @@
+package net.dadamalda.ars_lumos;
+
+import com.mojang.logging.LogUtils;
+import net.dadamalda.ars_lumos.compat.ArsElementalCompat;
+import net.dadamalda.ars_lumos.compat.ArsNouveauCompat;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.packs.PackLocationInfo;
+import net.minecraft.server.packs.PackSelectionConfig;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.PathPackResources;
+import net.minecraft.server.packs.repository.BuiltInPackSource;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
+import org.slf4j.Logger;
+
+import java.util.Optional;
+
+// The value here should match an entry in the META-INF/neoforge.mods.toml file
+@Mod(Ars_lumos.MODID)
+public class Ars_lumos {
+    // Define mod id in a common place for everything to reference
+    public static final String MODID = "ars_lumos";
+    // Directly reference a slf4j logger
+    private static final Logger LOGGER = LogUtils.getLogger();
+
+    // The constructor for the mod class is the first code that is run when your mod is loaded.
+    // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
+    public Ars_lumos(IEventBus modEventBus, ModContainer modContainer) {
+        // Register ourselves for server and other game events we are interested in.
+        // Note that this is necessary if and only if we want *this* class (Ars_lumos) to respond directly to events.
+        // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
+        // NeoForge.EVENT_BUS.register(this);
+    }
+
+    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers evt) {
+            LogUtils.getLogger().info("[Ars Lumos] Registering renderers");
+
+            if(ModList.get().isLoaded("ars_nouveau")) {
+                ArsNouveauCompat.registerRenderers(evt);
+            }
+            if(ModList.get().isLoaded("ars_elemental")) {
+                ArsElementalCompat.registerRenderers(evt);
+            }
+        }
+
+        @SubscribeEvent
+        public static void addPackFinders(AddPackFindersEvent evt) {
+            if(evt.getPackType() == PackType.CLIENT_RESOURCES) {
+                var resourcePath = ModList.get().getModFileById(MODID).getFile().findResource("packs/ars_lumos_loafers");
+                var pack = Pack.readMetaAndCreate(
+                        new PackLocationInfo("builtin/ars_lumos_loafers", Component.literal("Ars Lumos Loafers"),
+                                PackSource.BUILT_IN, Optional.empty()),
+                        BuiltInPackSource.fromName(path -> new PathPackResources(path, resourcePath)),
+                        PackType.CLIENT_RESOURCES,
+                        new PackSelectionConfig(false, Pack.Position.TOP, false)
+                );
+
+                evt.addRepositorySource(packConsumer -> packConsumer.accept(pack));
+            }
+        }
+    }
+}

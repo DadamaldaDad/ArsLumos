@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.dadamalda.ars_lumos.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "ars_lumos.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
