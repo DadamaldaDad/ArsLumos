@@ -3,7 +3,7 @@ package net.dadamalda.ars_lumos.compat;
 import com.hollingsworth.arsnouveau.client.renderer.entity.WealdWalkerModel;
 import com.hollingsworth.arsnouveau.common.entity.WealdWalker;
 import com.hollingsworth.arsnouveau.setup.registry.ModEntities;
-import com.mojang.logging.LogUtils;
+import net.dadamalda.ars_lumos.Ars_lumos;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
@@ -11,7 +11,7 @@ import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
 public class ArsNouveauCompat {
 
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers evt) {
-        LogUtils.getLogger().info("[Ars Lumos] Ars Nouveau detected");
+        Ars_lumos.LOGGER.info("Ars Nouveau detected");
 
         evt.registerEntityRenderer(ModEntities.ENTITY_BLAZING_WEALD.get(), ctx -> {
             GeoEntityRenderer<WealdWalker> renderer = new GeoEntityRenderer<>(ctx, new WealdWalkerModel<>("blazing_weald"));

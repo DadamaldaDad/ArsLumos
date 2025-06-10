@@ -1,6 +1,5 @@
 package net.dadamalda.ars_lumos;
 
-import com.mojang.logging.LogUtils;
 import net.dadamalda.ars_lumos.compat.ArsElementalCompat;
 import net.dadamalda.ars_lumos.compat.ArsNouveauCompat;
 import net.minecraft.network.chat.Component;
@@ -20,7 +19,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
@@ -30,7 +30,7 @@ public class Ars_lumos {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "ars_lumos";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger("ArsLumos");
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
@@ -46,7 +46,7 @@ public class Ars_lumos {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers evt) {
-            LogUtils.getLogger().info("[Ars Lumos] Registering renderers");
+            LOGGER.info("Registering renderers");
 
             if(ModList.get().isLoaded("ars_nouveau")) {
                 ArsNouveauCompat.registerRenderers(evt);
