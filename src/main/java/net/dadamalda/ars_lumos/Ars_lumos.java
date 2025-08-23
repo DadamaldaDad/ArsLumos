@@ -2,6 +2,7 @@ package net.dadamalda.ars_lumos;
 
 import net.dadamalda.ars_lumos.compat.ArsElementalCompat;
 import net.dadamalda.ars_lumos.compat.ArsNouveauCompat;
+import net.dadamalda.ars_lumos.dynamic.DynAssetPlanner;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackLocationInfo;
 import net.minecraft.server.packs.PackSelectionConfig;
@@ -17,6 +18,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import org.apache.logging.log4j.LogManager;
@@ -39,6 +41,10 @@ public class Ars_lumos {
         // Note that this is necessary if and only if we want *this* class (Ars_lumos) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         // NeoForge.EVENT_BUS.register(this);
+
+        modContainer.registerConfig(ModConfig.Type.CLIENT, Config.SPEC);
+
+        DynAssetPlanner.plan();
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

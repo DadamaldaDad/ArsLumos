@@ -26,6 +26,10 @@ repositories {
             includeGroup "software.bernie.geckolib"
         }
     }
+
+    maven {
+        url = "https://api.modrinth.com/maven"
+    }
 }
 
 base {
@@ -137,6 +141,7 @@ dependencies {
     compileOnly "curse.maven:ars-elemental-561470:6606656"
 
     implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.7.5.1"
+    implementation "maven.modrinth:dynamic_asset_generator:${dag_version}-neoforge,${minecraft_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -152,7 +157,9 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
                              mod_license            : mod_license,
                              mod_version            : mod_version,
                              mod_authors            : mod_authors,
-                             mod_description        : mod_description]
+                             mod_description        : mod_description,
+                             dag_version_range      : dag_version_range
+    ]
     inputs.properties replaceProperties
     expand replaceProperties
     from "src/main/templates"
