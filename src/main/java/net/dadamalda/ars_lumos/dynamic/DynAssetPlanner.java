@@ -1,24 +1,22 @@
 package net.dadamalda.ars_lumos.dynamic;
 
-import com.mojang.logging.LogUtils;
 import dev.lukebemish.dynamicassetgenerator.api.PathAwareInputStreamSource;
 import dev.lukebemish.dynamicassetgenerator.api.ResourceCache;
 import dev.lukebemish.dynamicassetgenerator.api.ResourceGenerationContext;
 import dev.lukebemish.dynamicassetgenerator.api.client.AssetResourceCache;
 import net.dadamalda.ars_lumos.Ars_lumos;
 import net.dadamalda.ars_lumos.Config;
+import net.dadamalda.ars_lumos.config.ResourcePack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.IoSupplier;
+import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public final class DynAssetPlanner {
     public static final AssetResourceCache ASSET_CACHE =
@@ -33,12 +31,37 @@ public final class DynAssetPlanner {
         ASSET_CACHE.planSource(new PathAwareInputStreamSource() {
             @Override
             public @NotNull Set<ResourceLocation> getLocations(ResourceGenerationContext resourceGenerationContext) {
+                String resourcePack = "default";
+                if(Config.resourcePack == ResourcePack.DETECT) {
+                    try {
+                        InputStream footprint = Objects.requireNonNull(resourceGenerationContext.getResourceSource().getResource(
+                                ResourceLocation.parse("ars_nouveau:textures/block/blue_archwood_log.png")
+                        )).get();
+                        InputStream loafersFootprint = Objects.requireNonNull(resourceGenerationContext.getResourceSource().getResource(
+                                ResourceLocation.fromNamespaceAndPath(Ars_lumos.MODID, "textures/configurable/loafers/footprint.png")
+                        )).get();
+
+                        if (IOUtils.contentEquals(footprint, loafersFootprint)) {
+                            resourcePack = "loafers";
+                            Ars_lumos.LOGGER.info("Ars Loafers detected, if this is wrong, change the config");
+                        } else {
+                            Ars_lumos.LOGGER.info("No supported resource pack detected, if this is wrong, change the config");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    resourcePack = Config.resourcePack.getVariantId();
+                }
+
                 ASSETS.clear();
                 ASSETS.add(EMISSIVE_PROPERTIES);
                 ASSET_MAP.clear();
 
                 if(Config.enableTest) {
-                    addTexture(ResourceLocation.parse("ars_nouveau:textures/block/blue_archwood_log_e"), true);
+                    addTexture(ResourceLocation.parse("ars_nouveau:textures/block/blue_archwood_log_e"),
+                            resourcePack,
+                            !resourcePack.equals("loafers"));
                 }
 
                 return ASSETS;
