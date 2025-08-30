@@ -2,6 +2,8 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'idea'
+    id 'com.modrinth.minotaur' version '2.+'
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
     id 'net.neoforged.moddev' version '2.0.91'
 }
 
@@ -192,4 +194,48 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+modrinth {
+    token = project.hasProperty("modrinthToken") ? project.property("modrinthToken") : ""
+    projectId = "ars-lumos"
+    versionNumber = project.version
+    versionName = project.version
+    uploadFile = jar
+    gameVersions = ["1.21.1"]
+    loaders = ["neoforge"]
+    changelog = file("changelog.md").text
+
+    dependencies {
+        required.project("ars-nouveau")
+        required.project("continuity")
+        required.project("dynamic_asset_generator")
+        optional.project("arsdelight")
+    }
+}
+
+curseforge {
+    apiKey = project.hasProperty("curseforgeToken") ? project.property("curseforgeToken") : ""
+    project {
+        id = "1284308"
+        changelog = file("changelog.md")
+        releaseType = "release"
+        addGameVersion "1.21.1"
+        addGameVersion "NeoForge"
+        addGameVersion "Java 21"
+        mainArtifact(jar) {
+            displayName = project.version
+        }
+        relations {
+            requiredDependency "ars-nouveau"
+            requiredDependency "continuity"
+            requiredDependency "dynamic-asset-generator"
+            optionalDependency "ars-elemental"
+            optionalDependency "ars-nouveaus-flavors-delight"
+        }
+    }
+}
+
+tasks.register("publishAll") {
+    dependsOn "modrinth", "curseforge"
 }

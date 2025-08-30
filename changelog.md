@@ -1,0 +1,3 @@
+- Added configuration
+- Added automatic resource pack detection
+- Now requires Dynamic Asset Generator
