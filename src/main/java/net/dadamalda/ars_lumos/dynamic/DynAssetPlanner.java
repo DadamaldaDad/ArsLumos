@@ -6,7 +6,6 @@ import dev.lukebemish.dynamicassetgenerator.api.ResourceGenerationContext;
 import dev.lukebemish.dynamicassetgenerator.api.client.AssetResourceCache;
 import net.dadamalda.ars_lumos.Ars_lumos;
 import net.dadamalda.ars_lumos.Config;
-import net.dadamalda.ars_lumos.config.ResourcePack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.IoSupplier;
 import org.apache.commons.io.IOUtils;
@@ -28,13 +27,15 @@ public final class DynAssetPlanner {
     public static Set<ResourceLocation> ASSETS = new HashSet<>();
     public static Map<ResourceLocation, ResourceLocation> ASSET_MAP = new HashMap<>();
     public static String resourcePack = "default";
+    public static String resourcePack2 = "default";
 
     public static void plan() {
         ASSET_CACHE.planSource(new PathAwareInputStreamSource() {
             @Override
             public @NotNull Set<ResourceLocation> getLocations(ResourceGenerationContext resourceGenerationContext) {
                 resourcePack = "default";
-                if(Config.resourcePack == ResourcePack.DETECT) {
+                resourcePack2 = "default";
+                if(Config.detectResourcePacks) {
                     try {
                         InputStream footprint = Objects.requireNonNull(resourceGenerationContext.getResourceSource().getResource(
                                 ResourceLocation.parse("ars_nouveau:textures/block/blue_archwood_log.png")
@@ -47,13 +48,32 @@ public final class DynAssetPlanner {
                             resourcePack = "loafers";
                             Ars_lumos.LOGGER.info("Ars Loafers detected, if this is wrong, change the config");
                         } else {
-                            Ars_lumos.LOGGER.info("No supported resource pack detected, if this is wrong, change the config");
+                            Ars_lumos.LOGGER.info("Ars Loafers not detected, if this is wrong, change the config");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        InputStream footprint = Objects.requireNonNull(resourceGenerationContext.getResourceSource().getResource(
+                                ResourceLocation.parse("ars_nouveau:textures/item/ritual_wilden_summon.png")
+                        )).get();
+                        InputStream refreshFootprint = Objects.requireNonNull(resourceGenerationContext.getResourceSource().getResource(
+                                ResourceLocation.fromNamespaceAndPath(Ars_lumos.MODID, "textures/configurable/refresh/footprint.png")
+                        )).get();
+
+                        if (IOUtils.contentEquals(footprint, refreshFootprint)) {
+                            resourcePack2 = "refresh";
+                            Ars_lumos.LOGGER.info("Ars Nouveau Refresh detected, if this is wrong, change the config");
+                        } else {
+                            Ars_lumos.LOGGER.info("Ars Nouveau Refresh not detected, if this is wrong, change the config");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
-                    resourcePack = Config.resourcePack.getVariantId();
+                    if(Config.useLoafers) resourcePack = "loafers";
+                    if(Config.useRefresh) resourcePack2 = "refresh";
                 }
 
                 ASSETS.clear();
@@ -82,6 +102,18 @@ public final class DynAssetPlanner {
                 if(Config.enableSourceJars) addTexture(
                         ResourceLocation.parse("ars_nouveau:textures/block/mana_still_e"), resourcePack, true);
 
+                if(Config.enableArchwood && Config.enableRitualTablets) {
+                    for(ResourceLocation tablet : RitualTablets.RITUAL_TABLETS) {
+                        if(resourcePack2.equals("refresh") && RitualTablets.RITUAL_TABLETS_REFRESH.contains(tablet)) {
+                            addTexture(tablet, "refresh");
+                        } else {
+                            addTexture(tablet);
+                        }
+                    }
+
+                    addTexture(ResourceLocation.parse("ars_additions:textures/item/ritual_chunk_loading_e"), true);
+                }
+
                 return ASSETS;
             }
 
@@ -103,6 +135,7 @@ public final class DynAssetPlanner {
     }
 
     private static void addTexture(ResourceLocation location, String variant, boolean hasMcmeta) {
+        if(Config.disabledTextures.contains(location)) return;
         ResourceLocation input = ResourceLocation.fromNamespaceAndPath(Ars_lumos.MODID,
                 "textures/configurable/"+variant+"/"+location.getNamespace()+"/"+location.getPath());
 

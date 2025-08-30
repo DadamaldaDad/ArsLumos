@@ -1,0 +1,82 @@
+package net.dadamalda.ars_lumos.dynamic;
+
+import net.minecraft.resources.ResourceLocation;
+
+import java.util.List;
+
+public class RitualTablets {
+    public static final List<ResourceLocation> RITUAL_TABLETS = List.of(
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_conjure_island_desert_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_scrying_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_warping_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_sanctuary_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_gravity_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_sunrise_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_containment_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_overgrowth_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_animal_summon_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_challenge_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_conjure_island_plains_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_flight_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_binding_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_forestation_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_wilden_summon_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_cloudshaping_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_disintegration_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_harvest_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_burrowing_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_moonfall_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_awakening_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_fertility_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_restoration_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_flowering_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_tesla_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_flashing_base_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_archwood_island_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_squirrels_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_detection_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_archwood_forest_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_repulsion_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_attraction_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_sedimentation_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_mana_regeneration_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_elder_summon_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_conjure_island_village_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_conjure_island_vexing_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_conjure_island_starter_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_conjure_island_sculk_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_conjure_island_geode_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_conjure_island_flourishing_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_conjure_island_end_portal_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_conjure_island_cascading_e"),
+            ResourceLocation.parse("ars_caelum:textures/item/ritual_conjure_island_blazing_e"),
+            ResourceLocation.parse("ars_additions:textures/item/ritual_locate_structure_e")
+    );
+
+    public static final List<ResourceLocation> RITUAL_TABLETS_REFRESH = List.of(
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_animal_summon_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_awakening_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_binding_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_burrowing_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_challenge_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_cloudshaping_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_conjure_island_desert_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_conjure_island_plains_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_containment_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_disintegration_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_fertility_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_flight_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_flowering_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_forestation_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_gravity_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_harvest_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_moonfall_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_overgrowth_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_restoration_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_sanctuary_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_scrying_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_sunrise_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_warping_e"),
+            ResourceLocation.parse("ars_nouveau:textures/item/ritual_wilden_summon_e")
+    );
+}
