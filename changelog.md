@@ -1,3 +1,4 @@
-- Added configuration
-- Added automatic resource pack detection
-- Now requires Dynamic Asset Generator
+- Improved resource pack configuration
+- Ritual tablets now glow
+- Now supports Ars Nouveau Refresh
+- Added the option to disable specific textures

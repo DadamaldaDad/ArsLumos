@@ -211,6 +211,8 @@ modrinth {
         required.project("continuity")
         required.project("dynamic_asset_generator")
         optional.project("arsdelight")
+        optional.project("ars-additions")
+        optional.project("ars-caelum")
     }
 }
 
@@ -232,6 +234,8 @@ curseforge {
             requiredDependency "dynamic-asset-generator"
             optionalDependency "ars-elemental"
             optionalDependency "ars-nouveaus-flavors-delight"
+            optionalDependency "ars-additions"
+            optionalDependency "ars-caelum"
         }
     }
 }
