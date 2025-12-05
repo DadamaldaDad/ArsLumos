@@ -208,7 +208,7 @@ modrinth {
 
     dependencies {
         required.project("ars-nouveau")
-        required.project("continuity")
+        required.project("neocontinuity")
         required.project("dynamic_asset_generator")
         optional.project("arsdelight")
         optional.project("ars-additions")
@@ -230,7 +230,7 @@ curseforge {
         }
         relations {
             requiredDependency "ars-nouveau"
-            requiredDependency "continuity"
+            requiredDependency "neocontinuity"
             requiredDependency "dynamic-asset-generator"
             optionalDependency "ars-elemental"
             optionalDependency "ars-nouveaus-flavors-delight"
