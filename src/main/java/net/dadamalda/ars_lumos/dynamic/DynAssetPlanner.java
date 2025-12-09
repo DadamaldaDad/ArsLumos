@@ -97,6 +97,8 @@ public final class DynAssetPlanner {
                     addTexture(ResourceLocation.parse("ars_elemental:textures/block/yellow_archwood_log_top_e"),
                             resourcePack, !resourcePack.equals("loafers"));
                 }
+                if(Config.enableDawning) addArchwood(ResourceLocation.parse("archwood_good:orange"), "dawning", false, false);
+                if(Config.enableBlinding) addArchwood(ResourceLocation.parse("archwood_good:white"), "blinding", false, false);
 
                 if(Config.enableWarpPortals) addTexture(ResourceLocation.parse("ars_nouveau:textures/block/warp_portal_e"), true);
                 if(Config.enableSourceJars) addTexture(
@@ -159,11 +161,11 @@ public final class DynAssetPlanner {
         addTexture(location, "default", hasMcmeta);
     }
 
-    private static void addArchwood(ResourceLocation typeColor, String typeName, boolean hasBark) {
+    private static void addArchwood(ResourceLocation typeColor, String typeName, boolean hasBark, boolean hasLoafers) {
         if(Config.enableLogs) {
             for (String permutation : List.of("", "_1", "_2", "_3")) {
                 addTexture(typeColor.withPath("textures/block/" + typeColor.getPath() + "_archwood_log"+permutation+"_e"),
-                        resourcePack, !resourcePack.equals("loafers"));
+                        hasLoafers ? resourcePack : "default", hasLoafers ? !resourcePack.equals("loafers") : true);
             }
         }
 
@@ -171,6 +173,10 @@ public final class DynAssetPlanner {
             addTexture(ResourceLocation.fromNamespaceAndPath(
                     "arsdelight", "textures/item/ingredient/"+typeName+"_bark_e"));
         }
+    }
+
+    private static void addArchwood(ResourceLocation typeColor, String typeName, boolean hasBark) {
+        addArchwood(typeColor, typeName, hasBark, true);
     }
 
     private static void addArchwood(ResourceLocation typeColor, String typeName) {

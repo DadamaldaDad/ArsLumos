@@ -73,6 +73,14 @@ public class Config {
             .comment("For Ars Elemental")
             .define("enable_flashing", true);
 
+    private static final ModConfigSpec.BooleanValue ENABLE_DAWNING = BUILDER
+            .comment("For Archwood Good")
+            .define("enable_dawning", true);
+
+    private static final ModConfigSpec.BooleanValue ENABLE_BLINDING = BUILDER
+            .comment("For Archwood Good")
+            .define("enable_blinding", true);
+
     private static final ModConfigSpec.BooleanValue ENABLE_WARP_PORTALS = BUILDER
             .pop()
             .comment("Only affects nether-style portals, use a dominion wand to switch")
@@ -104,6 +112,8 @@ public class Config {
     public static boolean enableVexing;
     public static boolean enableBlazing;
     public static boolean enableFlashing;
+    public static boolean enableDawning;
+    public static boolean enableBlinding;
 
     public static boolean enableWarpPortals;
 
@@ -132,6 +142,8 @@ public class Config {
         enableVexing = ENABLE_VEXING.get();
         enableBlazing = ENABLE_BLAZING.get();
         enableFlashing = ENABLE_FLASHING.get();
+        enableDawning = ENABLE_DAWNING.get();
+        enableBlinding = ENABLE_BLINDING.get();
 
         enableWarpPortals = ENABLE_WARP_PORTALS.get();
 
