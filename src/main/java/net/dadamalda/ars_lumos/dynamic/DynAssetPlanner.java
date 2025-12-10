@@ -173,6 +173,10 @@ public final class DynAssetPlanner {
             addTexture(ResourceLocation.fromNamespaceAndPath(
                     "arsdelight", "textures/item/ingredient/"+typeName+"_bark_e"));
         }
+
+        if(Config.enablePlanks) {
+            addTexture(typeColor.withPath("textures/block/" + typeColor.getPath() + "_archwood_planks_e"));
+        }
     }
 
     private static void addArchwood(ResourceLocation typeColor, String typeName, boolean hasBark) {

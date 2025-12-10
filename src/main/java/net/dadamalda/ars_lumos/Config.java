@@ -57,6 +57,10 @@ public class Config {
             .comment("For Ars Nouveau Flavors & Delights")
             .define("enable_bark", true);
 
+    private static final ModConfigSpec.BooleanValue ENABLE_PLANKS = BUILDER
+            .comment("For Archwood Good")
+            .define("enable_planks", false);
+
     private static final ModConfigSpec.BooleanValue ENABLE_CASCADING = BUILDER
             .define("enable_cascading", true);
 
@@ -107,6 +111,7 @@ public class Config {
     public static boolean enableWealdWaddlers;
     public static boolean enableRitualTablets;
     public static boolean enableBark;
+    public static boolean enablePlanks;
     public static boolean enableCascading;
     public static boolean enableFlourishing;
     public static boolean enableVexing;
@@ -136,6 +141,7 @@ public class Config {
         enableWealdWaddlers = ENABLE_WEALD_WADDLERS.get();
         enableRitualTablets = ENABLE_RITUAL_TABLETS.get();
         enableBark = ENABLE_BARK.get();
+        enablePlanks = ENABLE_PLANKS.get();
 
         enableCascading = ENABLE_CASCADING.get();
         enableFlourishing = ENABLE_FLOURISHING.get();
