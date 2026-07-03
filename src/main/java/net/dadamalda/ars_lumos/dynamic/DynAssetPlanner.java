@@ -93,7 +93,7 @@ public final class DynAssetPlanner {
                 if(Config.enableVexing) addArchwood(ResourceLocation.parse("ars_nouveau:purple"), "vexing");
                 if(Config.enableBlazing) addArchwood(ResourceLocation.parse("ars_nouveau:red"), "blazing");
                 if(Config.enableFlashing) {
-                    addArchwood(ResourceLocation.parse("ars_elemental:yellow"), "flashing", false);
+                    addArchwood(ResourceLocation.parse("ars_elemental:yellow"), "flashing");
                     addTexture(ResourceLocation.parse("ars_elemental:textures/block/yellow_archwood_log_top_e"),
                             resourcePack, !resourcePack.equals("loafers"));
                 }
