@@ -97,8 +97,8 @@ public final class DynAssetPlanner {
                     addTexture(ResourceLocation.parse("ars_elemental:textures/block/yellow_archwood_log_top_e"),
                             resourcePack, !resourcePack.equals("loafers"));
                 }
-                if(Config.enableDawning) addArchwood(ResourceLocation.parse("archwood_good:orange"), "dawning", false, false);
-                if(Config.enableBlinding) addArchwood(ResourceLocation.parse("archwood_good:white"), "blinding", false, false);
+                if(Config.enableDawning) addArchwood(ResourceLocation.parse("archwood_good:orange"), "dawn", true, false);
+                if(Config.enableBlinding) addArchwood(ResourceLocation.parse("archwood_good:white"), "bleak", true, false);
 
                 if(Config.enableWarpPortals) addTexture(ResourceLocation.parse("ars_nouveau:textures/block/warp_portal_e"), true);
                 if(Config.enableSourceJars) addTexture(
