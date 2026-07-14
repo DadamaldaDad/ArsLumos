@@ -98,6 +98,9 @@ public final class DynAssetPlanner {
                             resourcePack, !resourcePack.equals("loafers"));
                 }
 
+                if(Config.enableSourceGems && Config.enableSourceGemItem)
+                    addTexture(ResourceLocation.parse("ars_nouveau:textures/item/source_gem_e"), resourcePack);
+
                 if(Config.enableWarpPortals) addTexture(ResourceLocation.parse("ars_nouveau:textures/block/warp_portal_e"), true);
                 if(Config.enableSourceJars) addTexture(
                         ResourceLocation.parse("ars_nouveau:textures/block/mana_still_e"), resourcePack, true);

@@ -40,6 +40,9 @@ public class Config {
             .pop()
             .define("enable_archwood", true);
 
+    private static final ModConfigSpec.BooleanValue ENABLE_SOURCE_GEMS = BUILDER
+            .define("enable_source_gems", true);
+
     private static final ModConfigSpec.BooleanValue ENABLE_LOGS = BUILDER
             .push("archwood")
             .define("enable_logs", true);
@@ -73,6 +76,11 @@ public class Config {
             .comment("For Ars Elemental")
             .define("enable_flashing", true);
 
+    private static final ModConfigSpec.BooleanValue ENABLE_SOURCE_GEM_ITEM = BUILDER
+            .pop()
+            .push("source_gems")
+            .define("enable_source_gem_item", true);
+
     private static final ModConfigSpec.BooleanValue ENABLE_WARP_PORTALS = BUILDER
             .pop()
             .comment("Only affects nether-style portals, use a dominion wand to switch")
@@ -105,6 +113,9 @@ public class Config {
     public static boolean enableBlazing;
     public static boolean enableFlashing;
 
+    public static boolean enableSourceGems;
+    public static boolean enableSourceGemItem;
+
     public static boolean enableWarpPortals;
 
     public static boolean enableSourceJars;
@@ -132,6 +143,9 @@ public class Config {
         enableVexing = ENABLE_VEXING.get();
         enableBlazing = ENABLE_BLAZING.get();
         enableFlashing = ENABLE_FLASHING.get();
+
+        enableSourceGems = ENABLE_SOURCE_GEMS.get();
+        enableSourceGemItem = ENABLE_SOURCE_GEM_ITEM.get();
 
         enableWarpPortals = ENABLE_WARP_PORTALS.get();
 
