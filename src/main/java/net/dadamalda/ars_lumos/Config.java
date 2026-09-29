@@ -61,6 +61,14 @@ public class Config {
             .comment("For Archwood Good")
             .define("enable_planks", false);
 
+    private static final ModConfigSpec.BooleanValue ENABLE_BARRELS = BUILDER
+            .comment("For Archwood Good")
+            .define("enable_barrels", false);
+
+    private static final ModConfigSpec.BooleanValue ENABLE_CRAFTING_TABLE = BUILDER
+            .comment("For Archwood Good")
+            .define("enable_crafting_table", false);
+
     private static final ModConfigSpec.BooleanValue ENABLE_CASCADING = BUILDER
             .define("enable_cascading", true);
 
@@ -112,6 +120,8 @@ public class Config {
     public static boolean enableRitualTablets;
     public static boolean enableBark;
     public static boolean enablePlanks;
+    public static boolean enableBarrels;
+    public static boolean enableCraftingTable;
     public static boolean enableCascading;
     public static boolean enableFlourishing;
     public static boolean enableVexing;
@@ -142,6 +152,8 @@ public class Config {
         enableRitualTablets = ENABLE_RITUAL_TABLETS.get();
         enableBark = ENABLE_BARK.get();
         enablePlanks = ENABLE_PLANKS.get();
+        enableBarrels = ENABLE_BARRELS.get();
+        enableCraftingTable = ENABLE_CRAFTING_TABLE.get();
 
         enableCascading = ENABLE_CASCADING.get();
         enableFlourishing = ENABLE_FLOURISHING.get();

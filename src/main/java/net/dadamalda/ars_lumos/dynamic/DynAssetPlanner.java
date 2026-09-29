@@ -100,6 +100,13 @@ public final class DynAssetPlanner {
                 if(Config.enableDawning) addArchwood(ResourceLocation.parse("archwood_good:orange"), "dawn", true, false);
                 if(Config.enableBlinding) addArchwood(ResourceLocation.parse("archwood_good:white"), "bleak", true, false);
 
+                if(Config.enableArchwood && Config.enableCraftingTable) {
+                    addTexture(ResourceLocation.parse("ars_nouveau:textures/block/archwood_crafting_table_east_e"));
+                    addTexture(ResourceLocation.parse("ars_nouveau:textures/block/archwood_crafting_table_west_e"));
+                    addTexture(ResourceLocation.parse("ars_nouveau:textures/block/archwood_crafting_table_north_e"));
+                    addTexture(ResourceLocation.parse("ars_nouveau:textures/block/archwood_crafting_table_south_e"));
+                }
+
                 if(Config.enableWarpPortals) addTexture(ResourceLocation.parse("ars_nouveau:textures/block/warp_portal_e"), true);
                 if(Config.enableSourceJars) addTexture(
                         ResourceLocation.parse("ars_nouveau:textures/block/mana_still_e"), resourcePack, true);
@@ -176,6 +183,10 @@ public final class DynAssetPlanner {
 
         if(Config.enablePlanks) {
             addTexture(typeColor.withPath("textures/block/" + typeColor.getPath() + "_archwood_planks_e"));
+        }
+
+        if(Config.enableBarrels) {
+            addTexture(typeColor.withPath("textures/block/" + typeColor.getPath() + "_archwood_barrel_side_e"));
         }
     }
 
