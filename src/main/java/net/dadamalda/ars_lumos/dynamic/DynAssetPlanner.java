@@ -160,6 +160,8 @@ public final class DynAssetPlanner {
     }
 
     private static void addArchwood(ResourceLocation typeColor, String typeName, boolean hasBark) {
+        if(!Config.enableArchwood) return;
+
         if(Config.enableLogs) {
             for (String permutation : List.of("", "_1", "_2", "_3")) {
                 addTexture(typeColor.withPath("textures/block/" + typeColor.getPath() + "_archwood_log"+permutation+"_e"),
@@ -178,12 +180,14 @@ public final class DynAssetPlanner {
     }
 
     private static void addWealdWalker(String typeName, boolean typeEnabled) {
+        boolean enabled = typeEnabled && Config.enableAll && Config.enableArchwood && Config.enableWealdWalkers;
+
         addTexture(ResourceLocation.fromNamespaceAndPath(
                 "ars_nouveau", "textures/entity/" + typeName + "_weald_walker_glowmask"),
-                Config.enableAll && Config.enableWealdWalkers && typeEnabled ? "default" : "disabled");
+                enabled ? "default" : "disabled");
 
         addTexture(ResourceLocation.fromNamespaceAndPath(
                         "ars_nouveau", "textures/entity/" + typeName + "_weald_waddler_glowmask"),
-                Config.enableAll && Config.enableWealdWaddlers && typeEnabled ? "default" : "disabled");
+                enabled ? "default" : "disabled");
     }
 }
