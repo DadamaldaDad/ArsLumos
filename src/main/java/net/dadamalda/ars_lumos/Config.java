@@ -81,6 +81,9 @@ public class Config {
             .push("source_gems")
             .define("enable_source_gem_item", true);
 
+    private static final ModConfigSpec.BooleanValue ENABLE_SPELL_TURRETS = BUILDER
+            .define("enable_spell_turrets", true);
+
     private static final ModConfigSpec.BooleanValue ENABLE_WARP_PORTALS = BUILDER
             .pop()
             .comment("Only affects nether-style portals, use a dominion wand to switch")
@@ -115,6 +118,7 @@ public class Config {
 
     public static boolean enableSourceGems;
     public static boolean enableSourceGemItem;
+    public static boolean enableSpellTurrets;
 
     public static boolean enableWarpPortals;
 
@@ -146,6 +150,7 @@ public class Config {
 
         enableSourceGems = ENABLE_SOURCE_GEMS.get();
         enableSourceGemItem = ENABLE_SOURCE_GEM_ITEM.get();
+        enableSpellTurrets = ENABLE_SPELL_TURRETS.get();
 
         enableWarpPortals = ENABLE_WARP_PORTALS.get();
 

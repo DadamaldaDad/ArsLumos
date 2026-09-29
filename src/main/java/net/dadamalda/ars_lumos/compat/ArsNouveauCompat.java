@@ -1,12 +1,23 @@
 package net.dadamalda.ars_lumos.compat;
 
 import com.hollingsworth.arsnouveau.client.renderer.entity.WealdWalkerModel;
+import com.hollingsworth.arsnouveau.client.renderer.item.GenericItemBlockRenderer;
+import com.hollingsworth.arsnouveau.client.renderer.tile.ArcaneCoreRenderer;
+import com.hollingsworth.arsnouveau.client.renderer.tile.BasicTurretRenderer;
+import com.hollingsworth.arsnouveau.common.block.BasicSpellTurret;
+import com.hollingsworth.arsnouveau.common.block.tile.BasicSpellTurretTile;
 import com.hollingsworth.arsnouveau.common.entity.WealdWalker;
+import com.hollingsworth.arsnouveau.common.items.RendererBlockItem;
+import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
+import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.hollingsworth.arsnouveau.setup.registry.ModEntities;
 import net.dadamalda.ars_lumos.Ars_lumos;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
+
+import java.util.function.Supplier;
 
 public class ArsNouveauCompat {
 
@@ -42,6 +53,23 @@ public class ArsNouveauCompat {
 
             renderer.addRenderLayer(new AutoGlowingGeoLayer<>(renderer));
 
+            return renderer;
+        });
+
+        evt.registerBlockEntityRenderer(BlockRegistry.BASIC_SPELL_TURRET_TILE.get(), ctx -> {
+            RendererBlockItem renderer = new RendererBlockItem(BlockRegistry.BASIC_SPELL_TURRET, ItemsRegistry.defaultItemProperties()) {
+                @Override
+                public Supplier<BlockEntityWithoutLevelRenderer> getRenderer() {
+                    return () -> {
+                        GenericItemBlockRenderer renderer = BasicTurretRenderer.getISTER();
+
+                        renderer.addRenderLayer(new AutoGlowingGeoLayer<>(renderer));
+
+                        return renderer;
+                    };
+                }
+            };
+            
             return renderer;
         });
     }

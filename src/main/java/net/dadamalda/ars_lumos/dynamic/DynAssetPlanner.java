@@ -100,6 +100,8 @@ public final class DynAssetPlanner {
 
                 if(Config.enableSourceGems && Config.enableSourceGemItem)
                     addTexture(ResourceLocation.parse("ars_nouveau:textures/item/source_gem_e"), resourcePack);
+                addTexture(ResourceLocation.parse("ars_nouveau:textures/block/basic_spell_turret_glowmask"),
+                        (Config.enableSourceGems && Config.enableSpellTurrets) ? resourcePack : "disabled");
 
                 if(Config.enableWarpPortals) addTexture(ResourceLocation.parse("ars_nouveau:textures/block/warp_portal_e"), true);
                 if(Config.enableSourceJars) addTexture(
